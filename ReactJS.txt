@@ -205,7 +205,7 @@ ReactJS
 					dispatch({ type: 'AddEmployee', payload: <data> })
 				})
 		}
-	=> Flow: component => call action creator => call api => dispatch action => reducer => return the state
+	=> Flow: component => call action creator => call api => dispatch action => reducer => return the state => mapStateToProps()
     
 Setup of ReactJS:
 1) Install create-react-app
