@@ -177,6 +177,8 @@ ReactJS
 		-const store = createStore(reducer);
 	=> Create reducer function:
 		-Which will update the state on the basis of action type.
+		-combineReducers method is used combine multiple reducers.
+		-We can't write async calls in Reducer function.
 	=> Pass the store object to entire application:
 		-In Provider component, store prop will be used to pass the store.
 	=> connect():
@@ -190,6 +192,20 @@ ReactJS
 		-Any time the state in store changes, mapStateToProps is called.
 		-mapStateToProps: Assign state to props.
 		-mapDispatchToProps: Each fields of the object should be a function, calling which is expected to dispatch an action to the store.
+	=> action creators:
+		-for sepearation of concerns we can create function we can return action object rather than sending it from component.
+		-we can make async call in action creator function.
+	=>async call in action creator function:
+		-instead of returning the action object, we will return a function.
+		-A function that will be returned will accept two parameters: dispatch, getState.
+		-Inside that function we can perform async operations and then resume dispatching of action.
+		return (dispatch, getState) => {
+			axios.post(<url>, <data>)
+				.then(response => {
+					dispatch({ type: 'AddEmployee', payload: <data> })
+				})
+		}
+	=> Flow: component => call action creator => call api => dispatch action => reducer => return the state
     
 Setup of ReactJS:
 1) Install create-react-app
