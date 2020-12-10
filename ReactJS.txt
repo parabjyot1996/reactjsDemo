@@ -1,0 +1,224 @@
+ES6
+1) var vs let vs const:
+	let and const are block scoped.
+	var is function scoped.
+
+2) Objects:
+	Objects are collection of key-value pair.
+
+3) this keyword:
+	Depends on the context of execution of this keyword.
+	Returns undefined in strict mode instead of window object.
+
+4) bind():
+	Use of this method is to bind the function to an object.
+
+5) Arrow functions: 
+	Instead of using conventional functions, use arrow functions.
+	Arrow functions inherits "this" value from outer context.
+
+6) Class & Inheritance:
+	Call super class constructor in child class constructor always.
+
+ReactJS
+1) Javascript library.
+
+2) Used for rendering the view (UI) and keeping state of components in sync with view.
+
+3) External library for other functionalities.
+
+4) Virtual DOM:
+	a. Maintains two states, one with updated state and previous state.
+	b. Only updates virtual DOM.
+	c. Only difference in the virtual DOM is updated to actual DOM.
+	d. Faster performance.
+
+5) Used for SPA.
+
+6) Uses JSX (JavaScript XML), embed HTML code in JS.
+
+7) Babel compiler to convert ES6, JSX into JS.
+
+8) All objects are private by default, need to export to use in another modules.
+
+9) There are two types of export statements:
+	a) Named export (export class Person)
+	b) Default export (export default Teacher) (Only one)
+
+10) JSX elements can be saved in variable, passed to function, stored in an object or array etc.
+
+11) Attributes are props in ReactJS.
+
+12) Cannot have two same tags adjacent to each other (<>...</>).
+
+13) ReactDOM.render(<reactElement>, <containerElement>);
+
+14) Types of components:
+	a) Class component
+	b) Function component
+
+15) Every class component has state object and props object (prop passed from parent to child).
+
+16) Class should extend from Component.
+
+17) In render function, we have to return JSX.
+
+18) Instead of using class attribute, we use classname.
+
+19) key is predefined prop.
+
+20) Event Handling
+	a) onClick={this.handleDelete} we pass the reference of the handler instead of using the paranthesis
+	b) onClick={()=>this.handleDelete(emp.Id)} create callback function to pass data to the function
+
+21) To update value of state, use setState() function to update.
+
+22) Props are immutable.
+	a) this.props to access props from parent passed to child.
+	b) Can pass handlers and data as props from parnet to child.
+
+23) Inline style (style={ {fontSize: '10px'} })	
+
+24) State Up-Lifting:
+	a) Share state between sibling, so we uplift the state to common parent component.
+	Problem: 
+	b) If tree is large, need to pass state to every child through props.
+	c) Unable to pass state directly to leaf component.
+
+25) Context API:
+	a) If large tree, intermediate component do not requires the state, and leaf component need the state.
+	b) Without passing props down manually at every level.
+	Steps:
+	- Create a context object(React.createContext()).
+	- Need to provide it to component tree, so it can be accessed.
+	- Create ContextProvider class component.
+	- Context provider provides data and Context consumer consumes the data.
+	- Both are components.
+	- Wrap the child component with context provider.
+	- Value attribute to pass state and functions from context provider to child component.
+	- Two ways to consume:
+		=> By using static "contextType" property of Component class.
+		(can consume only one context at a time)
+		(only applicable for class component)
+		=> By using Context Consumer component.
+		(applicable for both class and function component)
+		(can consume multiple context a time)
+		(<ThemeContext.Consumer><callback function></ThemeContext.Consumer>)
+		(wrap JSX elements inside the consumer tag)
+		
+26) Function Components:
+	- React Hooks(useState()) can be used to maintain the data.
+	- We can pass props and events same as Class components.
+	- Can add function inside the Function Component.
+
+27) Routing:
+	provides three component:
+	- Routers => <BrowserRouter> and <HashRouter>
+	- Route => <Route>, <Switch> and <Redirect>
+	- Navigation => <Link> and <NavLink>
+	=> Browser Router uses HTML5 history API internally.
+	=> Redirect from one url to another url
+
+28) History, Location, Match object:
+	- History object is used for programmatical routing (this.props.history.push('/'))
+	- Read route parameters from Match object (this.props.match.params.<parameter>)
+
+29) Prompt: For default js pop-up
+
+30) Call RestAPI(Axios)
+
+31) Lifecycle of components:
+	- Mount: When an instance of component is created and inserted into DOM is called as "Mounting process".
+		=> constructor(): to initialize state and bind event handlers method to instance.
+		=> static getDerivedStateFromProps(): calculating state from props.
+		=> render(): called in both mounting process and update process.
+		=> componentDidMount(): will be called after the render() mounting process.
+	- Update: Whenever component's state or props changes.
+		=> render(): if state or props changed.
+		=> componentDidUpdate(): invoked immediately after updating occurs.
+	- Unmount: When component is removed from DOM is called "Unmounting process".
+		=> componentWillUnmount(): called when component is being removed from the DOM.
+	- Error Handling:
+		=> componentDidCatch()
+
+32) Controlled component: data is handled by React component.
+    Uncontrolled component: data is handled by actual DOM (use a ref).
+
+33) React Hooks(for function components):
+	- are functions
+	=> useState(): for maintaining state inside function components.
+		-returns array (const [emp, setEmp] = useState())
+		-can specify default value (setState(0), setState({}), setState([]))
+	=> useEffect(): combination of componentWillUpdate() and componentDidUpdate().
+	=> useContext(): to consume context object.
+	=> useReducer(): used for Redux
+
+34) What is Redux?
+	- state management library.
+	- Store => entire application data is available inside Redux Store.
+	- makes state management easy.
+	- Components have to subscribe for changes.
+	- If component wants to change in Redux:
+		=> First dispatch an action.
+		=> An action is an object with type property and optional properties for payload
+		=> Reducer is a function responsible for updating state inside the store.
+		=> Action will be passed to the Reducer function, then reducer updates state in store.
+		=> Reducer function returns the updated state.
+	- CreateStore: call createStore() function to create store.
+	- createStore() accepts one parameter i.e reducer function.
+	- To read the state, we need to subscribe to the function subscribe of store.
+	- store.subscribe(() => console.log(store.getState()));
+	- const addToCartction = { type: "Cart", data { id: 1 } }
+	- store.dispatch(<action>) used to dispatch the action.
+	- dispatch function internally call reducer function to update the state.
+
+35) react-redux:
+	=> Setup Redux Store:
+		-const store = createStore(reducer);
+	=> Create reducer function:
+		-Which will update the state on the basis of action type.
+	=> Pass the store object to entire application:
+		-In Provider component, store prop will be used to pass the store.
+	=> connect():
+		-connect react component to redux store.
+		-provides dispatch functionality.
+		-connect() returns a new functional component that wraps our component.
+	=> dispatch action:
+		-mapStateToProps and mapDispatchToProps parameter of connect() deals with yours Redux store's state and dispatch resp.
+		-If mapStateToProps function is specified the new wrapper component will subscribe to Redux store updates.
+		-If you want to unsubscribe, pass null or undefined in place of mapStateToProps.
+		-Any time the state in store changes, mapStateToProps is called.
+		-mapStateToProps: Assign state to props.
+		-mapDispatchToProps: Each fields of the object should be a function, calling which is expected to dispatch an action to the store.
+    
+Setup of ReactJS:
+1) Install create-react-app
+	=> npm install -g create-react-app
+	=> create-react-app <project-name>
+	OR
+	=> npx create-react-app <project-name> (Recommended)
+2) npm start (to run application)
+3) npm install --save bootstrap
+4) npm install --save react-router-dom (React Router)
+5) npm install --save axios (Making HTTP call)
+6) npm install --save  (Form validation)
+7) npm install --save redux react-redux (Redux for React)
+
+Project Structure:
+1) package.json: project name, version, dependencies, scripts
+2) public: static assets
+3) src: main application code
+	index.js => main js file
+	index.css => global style
+	App.js => root component
+	App.css => stylesheet for component
+	App.test.js => unit test component
+
+Extensions in VS Code:
+1) Simple React Snippets by Burke Holland
+2) React Developer Tools extension for browser.
+
+Links:
+https://reactjs.org/docs/faq-internals.html
+https://github.com/acdlite/react-fiber-architecture
+https://reactjs.org/docs/react-component.html
