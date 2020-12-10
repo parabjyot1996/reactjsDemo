@@ -205,6 +205,10 @@ ReactJS
 					dispatch({ type: 'AddEmployee', payload: <data> })
 				})
 		}
+	=> use middleware when performing async operations(redux-thunk/redux-saga):
+		-they will halt the current operation then perform the async operation, then resume dispatch operation.
+		-second parameter in createStore is to applyMiddleware.
+		-const store = createStore(reducer, applyMiddleware(thunk));
 	=> Flow: component => call action creator => call api => dispatch action => reducer => return the state => mapStateToProps()
     
 Setup of ReactJS:
@@ -219,6 +223,7 @@ Setup of ReactJS:
 5) npm install --save axios (Making HTTP call)
 6) npm install --save  (Form validation)
 7) npm install --save redux react-redux (Redux for React)
+8) npm install --save redux-thunk (Middleware)
 
 Project Structure:
 1) package.json: project name, version, dependencies, scripts
