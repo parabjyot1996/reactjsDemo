@@ -205,6 +205,8 @@ ReactJS
 					dispatch({ type: 'AddEmployee', payload: <data> })
 				})
 		}
+		-to call the action creator from component inside mapDispatchToProps:
+			dispatch(<action creator function>)
 	=> use middleware when performing async operations(redux-thunk/redux-saga):
 		-they will halt the current operation then perform the async operation, then resume dispatch operation.
 		-second parameter in createStore is to applyMiddleware.
